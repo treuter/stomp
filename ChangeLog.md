@@ -3,6 +3,12 @@ stomp ChangeLog
 
 ## ?.?.? / ????-??-??
 
+
+## 9.4.0 / 2021-01-18
+
+* Add SSL and TLS support. See pull request #10
+  (@treuter, @friebe)
+
 ## 9.3.0 / 2017-09-11
 
 * Made connection timeout configurable both via connection URL *and/or* by

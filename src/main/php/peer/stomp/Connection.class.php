@@ -4,6 +4,8 @@ use util\log\Logger;
 use util\log\Traceable;
 use peer\URL;
 use peer\Socket;
+use peer\SSLSocket;
+use peer\TLSSocket;
 use peer\SocketInputStream;
 use peer\SocketOutputStream;
 use peer\ProtocolException;
@@ -193,8 +195,10 @@ class Connection extends \lang\Object implements Traceable {
    *
    */
   protected function _connect(URL $url) {
-    if ($url->getScheme() === 'stomp+ssl') {
+    if ('stomp+ssl' === $url->getScheme()) {
       $this->socket= new SSLSocket($url->getHost(), $url->getPort(61612));
+    } else if ('stomp+tls' === $url->getScheme()) {
+      $this->socket= new TLSSocket($url->getHost(), $url->getPort(61612));
     } else {
       $this->socket= new Socket($url->getHost(), $url->getPort(61612));
     }
